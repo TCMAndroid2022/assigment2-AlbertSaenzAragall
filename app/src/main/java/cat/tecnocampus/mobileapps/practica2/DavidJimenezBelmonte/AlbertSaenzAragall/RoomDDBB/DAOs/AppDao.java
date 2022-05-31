@@ -1,32 +1,35 @@
 package cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.DAOs;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
+
 
 import java.util.List;
 
-import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.Entities.Games;
+import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.Entities.Game;
 import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.Entities.User;
 
 @Dao
 public interface AppDao {
 
     //Games
-    @Query("SELECT * FROM Games WHERE player = :player")
-    List<Games> findByPlayer(String player);
+    @Query("SELECT * FROM Game WHERE player = :player")
+    LiveData<List<Game>> findGameByPlayer(String player);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void addGame(Game game);
 
     //User
     @Query("SELECT * FROM User")
-    List<User> getAll();
+    LiveData<List<User>> getAllUsers();
 
     @Query("SELECT * FROM User WHERE nickname = :nickname")
-    User findByNickname(String nickname);
+    LiveData<User> findByNickname(String nickname);
 
-    @Update
-    void update(User user);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void addUser(User user);
 
-    @Insert
-    void addNewUser(User user);
 }

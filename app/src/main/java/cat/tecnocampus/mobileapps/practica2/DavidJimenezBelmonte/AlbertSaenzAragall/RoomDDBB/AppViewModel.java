@@ -1,0 +1,43 @@
+package cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB;
+
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
+
+import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.Entities.Game;
+import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.Entities.User;
+
+public class AppViewModel extends AndroidViewModel {
+    private DatabaseController repository;
+    private LiveData<List<User>> allUsers;
+
+    public AppViewModel(@NonNull Application application) {
+        super(application);
+        repository = new DatabaseController(application);
+        allUsers = repository.getAllUsers();
+    }
+
+    LiveData<List<Game>> finGameByPlayer(String player){
+        return repository.findGameByPlayer(player);
+    }
+
+    void addGame(String player, int punctuation){
+        repository.addGame(player, punctuation);
+    }
+
+    LiveData<List<User>> getAllUsers() {
+        return allUsers;
+    }
+
+    LiveData<User> findByNickName(String nickname){
+        return repository.findByNickname(nickname);
+    }
+
+    void addUser(String nickname, int points, int games){
+        repository.addUser(nickname, points, games);
+    }
+}
