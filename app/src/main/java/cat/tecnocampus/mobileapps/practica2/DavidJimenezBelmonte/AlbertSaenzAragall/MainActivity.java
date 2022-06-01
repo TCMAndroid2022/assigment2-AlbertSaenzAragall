@@ -36,29 +36,13 @@ public class MainActivity extends AppCompatActivity {
         jsonRequest();
     }
 
-    private void stringRequest() {
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                textView.setText(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("SwA", "Error in request");
-            }
-        });
-        requestQueue.add(request);
-    }
-
     private void jsonRequest(){
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-
-                    JSONObject body = response;
-                    textView.setText(body.getString("body"));
+                    String word = response.getJSONObject("body").getString("Word");
+                    textView.setText(word);
                 } catch (Exception ex) {
                     Log.d("SwA", "Error parsing json array");
                 }
