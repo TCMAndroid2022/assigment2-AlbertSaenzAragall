@@ -21,7 +21,7 @@ public class AppViewModel extends AndroidViewModel {
         allUsers = repository.getAllUsers();
     }
 
-    LiveData<List<Game>> finGameByPlayer(String player){
+    public LiveData<List<Game>> finGameByPlayer(String player){
         return repository.findGameByPlayer(player);
     }
 
@@ -29,11 +29,11 @@ public class AppViewModel extends AndroidViewModel {
         repository.addGame(player, punctuation);
     }
 
-    LiveData<List<User>> getAllUsers() {
+    public LiveData<List<User>> getAllUsers() {
         return allUsers;
     }
 
-    LiveData<User> findByNickName(String nickname){
+    public LiveData<User> findByNickName(String nickname){
         return repository.findByNickname(nickname);
     }
 

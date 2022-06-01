@@ -23,6 +23,12 @@ public class User {
         this.nickname = nickname;
     }
 
+    public User(@NonNull String nickname, int points, int games) {
+        this.nickname = nickname;
+        this.points = points;
+        this.games = games;
+    }
+
     public void setPoints(int points) {
         this.points = points;
     }

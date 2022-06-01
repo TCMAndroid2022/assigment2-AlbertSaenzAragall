@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Game {
 
-    @PrimaryKey(autoGenerate = true) //preguntar https://developer.android.com/reference/androidx/room/PrimaryKey#autoGenerate()
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     public int id;
 
@@ -19,8 +19,9 @@ public class Game {
     @ColumnInfo(name = "punctuation")
     public int punctuation;
 
-    public void setId(int id) {
-        this.id = id;
+    public Game(String player, int punctuation) {
+        this.player = player;
+        this.punctuation = punctuation;
     }
 
     public void setPlayer(String player) {

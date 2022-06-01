@@ -29,7 +29,7 @@ public class DatabaseController {
     }
 
     public void addGame(String player, int punctuation) {
-        Game current = new Game();
+        Game current = new Game(player, punctuation);
         current.setPlayer(player);
         current.setPunctuation(punctuation);
         new insertAsyncTask(appDao).execute(current);
@@ -44,7 +44,7 @@ public class DatabaseController {
     }
 
     public void addUser(String nickname, int points, int games) {
-        User current = new User();
+        User current = new User(nickname, points, games);
         current.setNickname(nickname);
         current.setPoints(points);
         current.setGames(games);
