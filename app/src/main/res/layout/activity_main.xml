@@ -7,9 +7,20 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/Test"
+    <EditText
+        android:id="@+id/enter_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test" />
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/nickname"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/play_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Play"
+        android:onClick="enterNickname"/>
+
 </LinearLayout>

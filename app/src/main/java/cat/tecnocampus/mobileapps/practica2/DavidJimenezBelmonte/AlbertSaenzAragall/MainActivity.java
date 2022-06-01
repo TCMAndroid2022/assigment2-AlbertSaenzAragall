@@ -2,8 +2,12 @@ package cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAra
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -18,14 +22,41 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.AppViewModel;
+
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
+    /*TextView textView;
     RequestQueue requestQueue;
     private static final String url = "https://palabras-aleatorias-public-api.herokuapp.com/random";
-    private String word;
+    private String word;*/
 
-    @Override
+    private EditText editText;
+    private Button playButton;
+    private AppViewModel appViewModel;
+
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        editText = findViewById(R.id.enter_nickname);
+        playButton = findViewById(R.id.play_button);
+
+    }
+
+    public void enterNickname(View view) {
+        String nickname = editText.getText().toString();
+
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("nickname", nickname);
+
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
+
+    }
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -56,5 +87,5 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
     }
-        //ONDestroy reventarse la bbdd tmbn
+        //ONDestroy reventarse la bbdd tmbn*/
 }
