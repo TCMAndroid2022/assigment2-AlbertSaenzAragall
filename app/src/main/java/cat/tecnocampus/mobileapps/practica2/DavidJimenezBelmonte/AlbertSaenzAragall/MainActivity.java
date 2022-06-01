@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     RequestQueue requestQueue;
     private static final String url = "https://palabras-aleatorias-public-api.herokuapp.com/random";
+    private String word;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
-        jsonRequest();
+        getApiWord();
     }
 
-    private void jsonRequest(){
+    private void getApiWord(){
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
