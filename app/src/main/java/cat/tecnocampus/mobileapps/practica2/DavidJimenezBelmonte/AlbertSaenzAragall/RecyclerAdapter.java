@@ -6,20 +6,30 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.Entities.User;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>{
 
-    private LiveData<List<User>> usersList;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    public RecyclerAdapter(LiveData<List<User>> usersList) {
-        this.usersList = usersList;
+        private TextView nickname;
+        private TextView points;
+        private TextView games;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nickname = itemView.findViewById(R.id.nickname);
+            points = itemView.findViewById(R.id.points);
+            games = itemView.findViewById(R.id.games);
+        }
     }
+
+    private List<User> users = new ArrayList<>();
 
     @NonNull
     @Override
@@ -30,26 +40,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        User user =usersList.getValue().get(position);
-        holder.user.setText(user.getNickname());
-        holder.points.setText(user.getPoints());
-        holder.games.setText(user.getGames());
+        User currentUser = users.get(position);
+        holder.nickname.setText(currentUser.getNickname());
+        holder.points.setText(String.valueOf(currentUser.getPoints()));
+        holder.games.setText(String.valueOf(currentUser.getGames()));
     }
 
     @Override
     public int getItemCount() {
-        return usersList.getValue().size();
+        return users.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView user, points, games;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            user = itemView.findViewById(R.id.user);
-            points = itemView.findViewById(R.id.points);
-            games = itemView.findViewById(R.id.games);
-        }
+    public void setUsers(List<User> users) {
+        this.users = users;
+        notifyDataSetChanged();
     }
 }

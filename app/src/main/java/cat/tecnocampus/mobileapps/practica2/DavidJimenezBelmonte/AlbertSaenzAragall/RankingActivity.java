@@ -2,11 +2,16 @@ package cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAra
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -15,8 +20,7 @@ import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzArag
 
 public class RankingActivity extends AppCompatActivity {
 
-    private LiveData<List<User>> usersList;
-    private RecyclerView recyclerView;
+    //private LiveData<List<User>> usersList;
     private AppViewModel appViewModel;
 
     @Override
@@ -27,13 +31,22 @@ public class RankingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.Ranking);
 
-        recyclerView = findViewById(R.id.ranking);
-        appViewModel = new AppViewModel(getApplication());
+        RecyclerView recyclerView = findViewById(R.id.ranking);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
 
-        usersList = appViewModel.getAllUsers();
+        RecyclerAdapter adapter = new RecyclerAdapter();
+        recyclerView.setAdapter(adapter);
 
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(usersList);
-        recyclerView.setAdapter(recyclerAdapter);
+        appViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+        appViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                adapter.setUsers(users);
+            }
+        });
+
+        //usersList = appViewModel.getAllUsers();
     }
 
 }

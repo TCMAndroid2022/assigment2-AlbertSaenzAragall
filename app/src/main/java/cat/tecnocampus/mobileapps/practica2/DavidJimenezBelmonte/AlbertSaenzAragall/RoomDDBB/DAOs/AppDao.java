@@ -23,7 +23,7 @@ public interface AppDao {
     void addGame(Game game);
 
     //User
-    @Query("SELECT * FROM User")
+    @Query("SELECT * FROM User ORDER BY points DESC")
     LiveData<List<User>> getAllUsers();
 
     @Query("SELECT * FROM User WHERE nickname = :nickname")
