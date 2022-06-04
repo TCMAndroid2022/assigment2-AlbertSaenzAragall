@@ -29,6 +29,19 @@ public class User {
         this.games = games;
     }
 
+    @NonNull
+    public String getNickname() {
+        return nickname;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getGames() {
+        return games;
+    }
+
     public void setPoints(int points) {
         this.points = points;
     }

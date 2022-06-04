@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.Login);
+
         editText = findViewById(R.id.enter_nickname);
         playButton = findViewById(R.id.play_button);
 
@@ -54,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }
-
     }
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {

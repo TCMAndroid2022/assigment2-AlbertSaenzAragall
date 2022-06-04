@@ -3,4 +3,5 @@
     <string name="nickname">Nickname</string>
     <string name="Play">Play</string>
     <string name="Ranking">Ranking</string>
+    <string name="Login">Login</string>
 </resources>
