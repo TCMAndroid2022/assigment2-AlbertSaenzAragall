@@ -1,6 +1,8 @@
 package cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -45,8 +47,8 @@ public class GameActivity extends AppCompatActivity {
     private AppViewModel appViewModel;
 
     private String nickname;
-
     private int tries = 0;
+    private boolean cont = false;
 
     RequestQueue requestQueue;
     private static final String url = "https://palabras-aleatorias-public-api.herokuapp.com/random";
@@ -149,7 +151,10 @@ public class GameActivity extends AppCompatActivity {
             this.letter.setText("");
             if(isWin(secretToString())){
                double punctuation = calculatePoints();
+                Toast.makeText(this, "CONGRATULATIONS, YOU WON!!", Toast.LENGTH_LONG).show();
                saveData(punctuation);
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
         }else{
             Toast.makeText(this, "Please enter a valid parameter (only one letter)", Toast.LENGTH_SHORT).show();
@@ -189,13 +194,29 @@ public class GameActivity extends AppCompatActivity {
         return (double)(((double)word.length() - (double) tries) / (double) word.length()) * 10;
     }
     private void saveData(double punctuation){
-        User user = appViewModel.findByNickName(nickname).getValue();
-        if(user == null){
+        cont = false;
+            LiveData<User> userLiveData = appViewModel.findByNickName(nickname);
+            userLiveData.observe(this, new Observer<User>() {
+                @Override
+                public void onChanged(User user) {
+                    if(!cont){
+                        if(user == null){
+                            appViewModel.addUser(nickname, punctuation, 1);
+                            appViewModel.addGame(nickname, punctuation);
+                        }else{
+                            appViewModel.addUser(nickname, user.getPoints() + punctuation, user.getGames() + 1);
+                            appViewModel.addGame(nickname, punctuation);
+                        }
+                        cont = true;
+                    }
+                }
+            });
+        }
+        /*if(userLiveData == null){
             appViewModel.addUser(nickname, punctuation, 1);
             appViewModel.addGame(nickname, punctuation);
         }else{
-            appViewModel.addUser(nickname, user.getPoints() + punctuation, user.getGames() + 1);
+            appViewModel.addUser(nickname, userLiveData.getPoints() + punctuation, userLiveData.getGames() + 1);
             appViewModel.addGame(nickname, punctuation);
-        }
-    }
+        }*/
 }
