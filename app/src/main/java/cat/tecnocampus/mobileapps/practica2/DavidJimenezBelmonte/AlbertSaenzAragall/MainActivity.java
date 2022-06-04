@@ -29,13 +29,7 @@ import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzArag
 
 public class MainActivity extends AppCompatActivity {
 
-    /*TextView textView;
-    RequestQueue requestQueue;
-    private static final String url = "https://palabras-aleatorias-public-api.herokuapp.com/random";
-    private String word;*/
-
     private EditText editText;
-    private Button playButton;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.Login);
 
         editText = findViewById(R.id.enter_nickname);
-        playButton = findViewById(R.id.play_button);
 
     }
 
@@ -65,36 +58,4 @@ public class MainActivity extends AppCompatActivity {
         AppDatabase.destroyInstance();
         super.onDestroy();
     }
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        textView = findViewById(R.id.Test);
-
-        requestQueue = Volley.newRequestQueue(this);
-
-        getApiWord();
-    }
-
-    private void getApiWord(){
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String word = response.getJSONObject("body").getString("Word");
-                    textView.setText(word);
-                } catch (Exception ex) {
-                    Log.d("SwA", "Error parsing json array");
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("SwA", "Error in request");
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
-    }
-        //ONDestroy reventarse la bbdd tmbn*/
 }

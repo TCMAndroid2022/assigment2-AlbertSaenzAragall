@@ -20,7 +20,6 @@ import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzArag
 
 public class RankingActivity extends AppCompatActivity {
 
-    //private LiveData<List<User>> usersList;
     private AppViewModel appViewModel;
 
     @Override
@@ -45,8 +44,5 @@ public class RankingActivity extends AppCompatActivity {
                 adapter.setUsers(users);
             }
         });
-
-        //usersList = appViewModel.getAllUsers();
     }
-
 }
