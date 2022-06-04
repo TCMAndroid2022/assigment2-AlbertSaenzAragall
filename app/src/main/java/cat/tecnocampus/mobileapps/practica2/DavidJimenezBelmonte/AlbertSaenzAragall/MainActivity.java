@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void enterNickname(View view) {
         String nickname = editText.getText().toString();
+        populate();
 
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra("nickname", nickname);
@@ -59,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }
+    }
+
+    public void populate(){
+        appViewModel = new AppViewModel(getApplication());
+
+        appViewModel.addUser("Manolo", 0, 0);
+        appViewModel.addUser("Andrea", 10, 1);
+        appViewModel.addUser("Juan", 20, 3);
+        appViewModel.addUser("Eufrasio", 30, 2);
     }
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {

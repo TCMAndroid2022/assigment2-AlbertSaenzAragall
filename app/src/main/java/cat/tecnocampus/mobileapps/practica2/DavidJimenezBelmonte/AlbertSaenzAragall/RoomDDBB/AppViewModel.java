@@ -37,7 +37,7 @@ public class AppViewModel extends AndroidViewModel {
         return repository.findByNickname(nickname);
     }
 
-    void addUser(String nickname, int points, int games){
+    public void addUser(String nickname, int points, int games){
         repository.addUser(nickname, points, games);
     }
 }
