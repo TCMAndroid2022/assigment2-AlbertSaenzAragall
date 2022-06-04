@@ -11,17 +11,14 @@ public class User {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "nickname")
-    public String nickname;
+    private String nickname;
 
     @ColumnInfo(name = "points")
-    public int points;
+    private int points;
 
     @ColumnInfo(name = "games")
-    public int games;
+    private int games;
 
-    public void setNickname(@NonNull String nickname) {
-        this.nickname = nickname;
-    }
 
     public User(@NonNull String nickname, int points, int games) {
         this.nickname = nickname;
@@ -40,6 +37,10 @@ public class User {
 
     public int getGames() {
         return games;
+    }
+
+    public void setNickname(@NonNull String nickname) {
+        this.nickname = nickname;
     }
 
     public void setPoints(int points) {

@@ -11,17 +11,33 @@ public class Game {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    public int id;
+    private int id;
 
     @ColumnInfo(name = "player")
-    public String player;
+    private String player;
 
     @ColumnInfo(name = "punctuation")
-    public int punctuation;
+    private int punctuation;
 
     public Game(String player, int punctuation) {
         this.player = player;
         this.punctuation = punctuation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public int getPunctuation() {
+        return punctuation;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setPlayer(String player) {
