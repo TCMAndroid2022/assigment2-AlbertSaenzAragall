@@ -25,7 +25,7 @@ public class AppViewModel extends AndroidViewModel {
         return repository.findGameByPlayer(player);
     }
 
-    void addGame(String player, int punctuation){
+    public void addGame(String player, double punctuation){
         repository.addGame(player, punctuation);
     }
 
@@ -37,7 +37,7 @@ public class AppViewModel extends AndroidViewModel {
         return repository.findByNickname(nickname);
     }
 
-    public void addUser(String nickname, int points, int games){
+    public void addUser(String nickname, double points, int games){
         repository.addUser(nickname, points, games);
     }
 }

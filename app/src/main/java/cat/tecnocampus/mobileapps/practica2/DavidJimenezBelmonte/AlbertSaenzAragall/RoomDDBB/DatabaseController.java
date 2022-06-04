@@ -15,7 +15,6 @@ import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzArag
 public class DatabaseController {
     private AppDao appDao;
     private LiveData<List<User>> allUsers;
-    private LiveData<List<Game>> AllGames;
 
     public DatabaseController(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -28,7 +27,7 @@ public class DatabaseController {
         return appDao.findGameByPlayer(player);
     }
 
-    public void addGame(String player, int punctuation) {
+    public void addGame(String player, double punctuation) {
         Game current = new Game(player, punctuation);
         current.setPlayer(player);
         current.setPunctuation(punctuation);
@@ -43,7 +42,7 @@ public class DatabaseController {
         return appDao.findByNickname(nickname);
     }
 
-    public void addUser(String nickname, int points, int games) {
+    public void addUser(String nickname, double points, int games) {
         User current = new User(nickname, points, games);
         current.setNickname(nickname);
         current.setPoints(points);

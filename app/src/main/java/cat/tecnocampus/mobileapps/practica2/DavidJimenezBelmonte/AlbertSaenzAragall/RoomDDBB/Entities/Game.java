@@ -17,9 +17,9 @@ public class Game {
     private String player;
 
     @ColumnInfo(name = "punctuation")
-    private int punctuation;
+    private double punctuation;
 
-    public Game(String player, int punctuation) {
+    public Game(String player, double punctuation) {
         this.player = player;
         this.punctuation = punctuation;
     }
@@ -32,7 +32,7 @@ public class Game {
         return player;
     }
 
-    public int getPunctuation() {
+    public double getPunctuation() {
         return punctuation;
     }
 
@@ -44,7 +44,7 @@ public class Game {
         this.player = player;
     }
 
-    public void setPunctuation(int punctuation) {
+    public void setPunctuation(double punctuation) {
         this.punctuation = punctuation;
     }
 }

@@ -14,13 +14,13 @@ public class User {
     private String nickname;
 
     @ColumnInfo(name = "points")
-    private int points;
+    private double points;
 
     @ColumnInfo(name = "games")
     private int games;
 
 
-    public User(@NonNull String nickname, int points, int games) {
+    public User(@NonNull String nickname, double points, int games) {
         this.nickname = nickname;
         this.points = points;
         this.games = games;
@@ -31,7 +31,7 @@ public class User {
         return nickname;
     }
 
-    public int getPoints() {
+    public double getPoints() {
         return points;
     }
 
@@ -43,7 +43,7 @@ public class User {
         this.nickname = nickname;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(double points) {
         this.points = points;
     }
 
