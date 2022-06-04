@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.AppDatabase;
 import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzAragall.RoomDDBB.AppViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -69,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         appViewModel.addUser("Andrea", 10, 1);
         appViewModel.addUser("Juan", 20, 3);
         appViewModel.addUser("Eufrasio", 30, 2);
+    }
+
+    protected void onDestroy() {
+        AppDatabase.destroyInstance();
+        super.onDestroy();
     }
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {
