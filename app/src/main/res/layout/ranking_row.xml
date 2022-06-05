@@ -14,7 +14,7 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/game_points"
+            android:id="@+id/points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -23,22 +23,22 @@
         </TextView>
 
         <TextView
-            android:id="@+id/game_nickname"
+            android:id="@+id/nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NickName"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:maxLines="1"
-            android:layout_toStartOf="@+id/game_points"
+            android:layout_toStartOf="@+id/points"
             android:layout_alignParentStart="true"
             android:ellipsize="end">
         </TextView>
 
         <TextView
-            android:id="@+id/game_id"
+            android:id="@+id/games"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/game_nickname"
+            android:layout_below="@+id/nickname"
             android:text="Games">
         </TextView>
 
