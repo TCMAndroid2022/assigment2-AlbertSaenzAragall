@@ -8,9 +8,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzArag
 public class RankingActivity extends AppCompatActivity {
 
     private AppViewModel appViewModel;
+    private RecyclerAdapter.RecyclerViewClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,8 @@ public class RankingActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        RecyclerAdapter adapter = new RecyclerAdapter();
+        setOnClickListener();
+        RecyclerAdapter adapter = new RecyclerAdapter(listener);
         recyclerView.setAdapter(adapter);
 
         appViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
@@ -44,5 +48,16 @@ public class RankingActivity extends AppCompatActivity {
                 adapter.setUsers(users);
             }
         });
+    }
+
+    private void setOnClickListener() {
+        listener = new RecyclerAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getApplicationContext(), AllGamesActivity.class);
+                //intent.putExtra("nickname", aqui el nickname);
+                startActivity(intent);
+            }
+        };
     }
 }

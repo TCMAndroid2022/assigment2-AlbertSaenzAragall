@@ -15,7 +15,7 @@ import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzArag
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>{
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView nickname;
         private TextView points;
@@ -26,10 +26,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             nickname = itemView.findViewById(R.id.nickname);
             points = itemView.findViewById(R.id.points);
             games = itemView.findViewById(R.id.games);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
         }
     }
 
     private List<User> users = new ArrayList<>();
+    private RecyclerViewClickListener listener;
+
+    public RecyclerAdapter(RecyclerViewClickListener listener) {
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -54,5 +66,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public void setUsers(List<User> users) {
         this.users = users;
         notifyDataSetChanged();
+    }
+
+    public interface RecyclerViewClickListener {
+        void onClick(View v, int position);
     }
 }
