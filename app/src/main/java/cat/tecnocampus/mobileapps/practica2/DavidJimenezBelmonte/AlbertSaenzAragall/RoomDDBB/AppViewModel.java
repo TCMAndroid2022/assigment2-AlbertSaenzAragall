@@ -21,7 +21,7 @@ public class AppViewModel extends AndroidViewModel {
         allUsers = repository.getAllUsers();
     }
 
-    public LiveData<List<Game>> finGameByPlayer(String player){
+    public LiveData<List<Game>> findGameByPlayer(String player){
         return repository.findGameByPlayer(player);
     }
 

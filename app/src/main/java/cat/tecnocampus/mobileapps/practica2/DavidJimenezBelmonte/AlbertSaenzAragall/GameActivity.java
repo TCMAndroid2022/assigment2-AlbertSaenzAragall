@@ -212,11 +212,4 @@ public class GameActivity extends AppCompatActivity {
                 }
             });
         }
-        /*if(userLiveData == null){
-            appViewModel.addUser(nickname, punctuation, 1);
-            appViewModel.addGame(nickname, punctuation);
-        }else{
-            appViewModel.addUser(nickname, userLiveData.getPoints() + punctuation, userLiveData.getGames() + 1);
-            appViewModel.addGame(nickname, punctuation);
-        }*/
 }
