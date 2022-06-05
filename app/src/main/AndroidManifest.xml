@@ -17,9 +17,13 @@
         android:theme="@style/Theme.Practica2DavidJimenezBelmonteAlbertSaenzAragall"
         tools:targetApi="31">
         <activity
+            android:name=".AllGamesActivity"
+            android:exported="false"
+            android:parentActivityName=".RankingActivity"/>
+        <activity
             android:name=".RankingActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".GameActivity"
             android:exported="false"
