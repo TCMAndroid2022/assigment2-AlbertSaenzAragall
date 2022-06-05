@@ -23,6 +23,7 @@ import cat.tecnocampus.mobileapps.practica2.DavidJimenezBelmonte.AlbertSaenzArag
 public class RankingActivity extends AppCompatActivity {
 
     private AppViewModel appViewModel;
+    private List<User> usersRanking;
     private RecyclerAdapter.RecyclerViewClickListener listener;
 
     @Override
@@ -46,6 +47,7 @@ public class RankingActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<User> users) {
                 adapter.setUsers(users);
+                usersRanking = users;
             }
         });
     }
@@ -55,7 +57,7 @@ public class RankingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v, int position) {
                 Intent intent = new Intent(getApplicationContext(), AllGamesActivity.class);
-                //intent.putExtra("nickname", aqui el nickname);
+                intent.putExtra("nickname", usersRanking.get(position).getNickname());
                 startActivity(intent);
             }
         };

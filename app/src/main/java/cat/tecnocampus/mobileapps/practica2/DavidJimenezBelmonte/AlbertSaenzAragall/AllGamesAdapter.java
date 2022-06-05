@@ -43,7 +43,7 @@ public class AllGamesAdapter extends RecyclerView.Adapter<AllGamesAdapter.GamesH
         Game currentGame = games.get(position);
         holder.game_nickname.setText(currentGame.getPlayer());
         holder.game_points.setText(String.valueOf(currentGame.getPunctuation()));
-        holder.game_id.setText(currentGame.getId());
+        holder.game_id.setText(String.valueOf(currentGame.getId()));
     }
 
     @Override
